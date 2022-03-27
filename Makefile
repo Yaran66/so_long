@@ -13,9 +13,13 @@
 
 NAME		=	so_long
 
-SRCS		=	so_long.c
+SRCS		=	${SRC} ${SRC_GNL}
 
-#HEADER		=	so_long.h
+SRC			=	so_long.c
+GNL			= 	get_next_line.c get_next_line_utils.c
+SRC_GNL		= 	$(addprefix gnl/, $(GNL))
+INCLUDES	=	includes
+D_FILES		=	$(addprefix $(SCRS),$(patsubst %.c,%.d,$(SRCS)))
 
 OBJS		= 	${SRCS:%.c=%.o}
 
@@ -24,7 +28,7 @@ RM			= 	rm -f
 
 OPTFLAGS 	= 	-O2 -w
 CFLAGS		= 	-Wall -Wextra -Werror -Imlx
-MLX			=	-L mlx -lmlx -framework OpenGL -framework AppKit
+MLX			=	-Lmlx -lmlx -framework OpenGL -framework AppKit
 
 
 .PHONY:			all clean fclean re
@@ -35,17 +39,18 @@ ${NAME}:		${OBJS}
 				make -s -C ./mlx
 				${CC} ${OBJS} ${MLX} -o ${NAME}
 
-%.o	:			%.c #${HEADER} Makefile
-				${CC} ${CFLAGS} ${OPTFLAGS}	-c $< -o $@
+%.o	:			%.c ${INCLUDES} Makefile
+				${CC} ${CFLAGS} ${OPTFLAGS}	-I ${INCLUDES} -c $< -o $@ -MMD
 
+-include		$(D_FILES)
 
 clean:
 				${RM} ${OBJS}
 				make clean -C ./mlx
+				$(RM) $(D_FILES)
 
 fclean:			clean
 				${RM} ${NAME}
-				make fclean -C ./mlx
 
 re:				fclean all
 				make re -C ./mlx
