@@ -6,7 +6,7 @@
 /*   By: wjasmine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 11:43:05 by wjasmine          #+#    #+#             */
-/*   Updated: 2022/03/27 11:43:10 by wjasmine         ###   ########.fr       */
+/*   Updated: 2022/04/01 15:40:42 by wjasmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,9 @@ void	error(char *message);
 void	ft_putstr_fd(char *s, int fd);
 void	*ft_memset(void *block, int c, size_t size);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
+void	ft_putstr_fd(char *s, int fd);
 enum	e_errors	map_parser(int fd, t_map *map);
+void	ft_start_mlx(void);
+//void 	print_lst(t_map *map);
 
 #endif SO_LONG_H
