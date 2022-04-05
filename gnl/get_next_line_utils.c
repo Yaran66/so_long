@@ -6,7 +6,7 @@
 /*   By: wjasmine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 13:51:35 by wjasmine          #+#    #+#             */
-/*   Updated: 2021/11/30 15:27:16 by wjasmine         ###   ########.fr       */
+/*   Updated: 2022/04/05 16:59:19 by wjasmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/get_next_line.h"
@@ -80,13 +80,14 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	char	*newstr;
 	int		i;
 
-	if (s1 == 0 || s2 == 0)
+//	if (s1 == 0 || s2 == 0)
+	if (s2 == 0)
 		return (0);
 	newstr = malloc((ft_strlen(s1) + ft_strlen(s2) + 1));
 	if (newstr == 0)
 		return (0);
 	i = 0;
-	while (*s1)
+	while (s1 && *s1)
 	{
 		newstr[i] = *s1;
 		s1++;

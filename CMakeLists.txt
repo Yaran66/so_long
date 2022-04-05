@@ -16,5 +16,5 @@ add_executable(_so_long_2
 
 SET(CMAKE_C_FLAGS  " ${CMAKE_C_FLAGS} -Wall -Wextra")
 
-target_link_libraries(_so_long_2
-        includes)
+#target_link_libraries(_so_long_2
+#        includes)

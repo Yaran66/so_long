@@ -6,7 +6,7 @@
 /*   By: wjasmine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 11:43:05 by wjasmine          #+#    #+#             */
-/*   Updated: 2022/04/01 15:40:42 by wjasmine         ###   ########.fr       */
+/*   Updated: 2022/04/05 17:06:28 by wjasmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include "get_next_line.h"
 # include "../mlx/mlx.h"
 # include <fcntl.h>
+# include <stdio.h>
 
 # define SPACE '0'
 # define WALL '1'
@@ -65,4 +66,4 @@ enum	e_errors	map_parser(int fd, t_map *map);
 void	ft_start_mlx(void);
 //void 	print_lst(t_map *map);
 
-#endif SO_LONG_H
+#endif //SO_LONG_H

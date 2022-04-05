@@ -6,7 +6,7 @@
 /*   By: wjasmine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 14:15:01 by wjasmine          #+#    #+#             */
-/*   Updated: 2022/04/03 11:38:50 by wjasmine         ###   ########.fr       */
+/*   Updated: 2022/04/05 16:49:45 by wjasmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "includes/so_long.h"
@@ -95,9 +95,9 @@ enum e_errors	map_parser(int fd, t_map *map)
 	}
 	free(str);
 	printf("%d error prior flags\n",err); // delete prior push
-	ft_check_flags(map, &err); // TODO check flags, in case if flags is 0
-	// (missing
-	// wall, exit, player (or too many players)
+	printf("%s parsed map\n", map->field);
+	ft_check_flags(map, &err); //check flags, in case if flags is 0
+	// (missing wall, exit, player (or too many players)
 	printf("%d error after flags check\n",err); // delete prior push
 	return (err);
 }
