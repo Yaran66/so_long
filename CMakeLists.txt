@@ -12,7 +12,7 @@ add_executable(_so_long_2
         err_cln.c
         so_long_utils.c
         gnl/get_next_line.c
-        gnl/get_next_line_utils.c)
+        gnl/get_next_line_utils.c draw_map.c play.c)
 
 SET(CMAKE_C_FLAGS  " ${CMAKE_C_FLAGS} -Wall -Wextra")
 

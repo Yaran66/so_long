@@ -6,7 +6,7 @@
 /*   By: wjasmine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 14:15:01 by wjasmine          #+#    #+#             */
-/*   Updated: 2022/04/05 16:49:45 by wjasmine         ###   ########.fr       */
+/*   Updated: 2022/04/20 21:23:00 by wjasmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "includes/so_long.h"
@@ -31,7 +31,7 @@ static enum e_errors	ft_check_map(t_map *map, char *str)
 	map->flags.is_wall = 1;
 	if (str[i++] != WALL)
 		err = MAP_BAD_WALLS;
-	ft_putstr_fd(str, 1); // delete prior push
+//	ft_putstr_fd(str, 1); // delete prior push
 	while (err == NO_ERROR &&  str[i] != '\n' && str[i] != '\0')
 	{
 		if (map->flags.is_wall && str[i] != WALL)
@@ -46,7 +46,7 @@ static enum e_errors	ft_check_map(t_map *map, char *str)
 			err = MAP_BAD_SYMB;
 		++i;
 	}
-	printf("%d error\n",err); // delete prior push
+//	printf("%d error\n",err); // delete prior push
 	if (i != map->size_x && err != MAP_BAD_SYMB)
 		err = MAP_BAD_SHAPE;
 	else if (str[i - 1] != WALL && err != MAP_BAD_SYMB)
@@ -94,10 +94,10 @@ enum e_errors	map_parser(int fd, t_map *map)
 //		printf("%d\n",err); // delete prior push
 	}
 	free(str);
-	printf("%d error prior flags\n",err); // delete prior push
-	printf("%s parsed map\n", map->field);
+//	printf("%d error prior flags\n",err); // delete prior push
+//	printf("%s parsed map\n", map->field);
 	ft_check_flags(map, &err); //check flags, in case if flags is 0
 	// (missing wall, exit, player (or too many players)
-	printf("%d error after flags check\n",err); // delete prior push
+//	printf("%d error after flags check\n",err); // delete prior push
 	return (err);
 }
