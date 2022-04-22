@@ -9,7 +9,7 @@
 /*   Updated: 2022/04/20 22:21:43 by wjasmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "includes/so_long.h"
+#include "includes/so_long_bonus.h"
 
 void	ft_putstr_fd(char *s, int fd)
 {
