@@ -6,10 +6,10 @@
 /*   By: wjasmine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 12:08:14 by wjasmine          #+#    #+#             */
-/*   Updated: 2022/04/20 22:21:43 by wjasmine         ###   ########.fr       */
+/*   Updated: 2022/04/23 12:31:32 by wjasmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "includes/so_long_bonus.h"
+#include "so_long_bonus.h"
 
 void	ft_putstr_fd(char *s, int fd)
 {
@@ -41,14 +41,14 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	return (0);
 }
 
-void ft_putchar_fd(char c, int fd)
+void	ft_putchar_fd(char c, int fd)
 {
 	write(fd, &c, 1);
 }
 
-void ft_putnbr_fd(int n, int fd)
+void	ft_putnbr_fd(int n, int fd)
 {
-	long i;
+	long	i;
 
 	i = n;
 	if (i < 0)

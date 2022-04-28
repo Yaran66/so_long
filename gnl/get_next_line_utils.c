@@ -9,7 +9,7 @@
 /*   Updated: 2022/04/05 16:59:19 by wjasmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../includes/get_next_line.h"
+#include "get_next_line.h"
 
 char	*ft_strcpy(char *dest, char *src)
 {

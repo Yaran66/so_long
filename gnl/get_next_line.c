@@ -9,7 +9,7 @@
 /*   Updated: 2021/12/01 15:53:31 by wjasmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../includes/get_next_line.h"
+#include "get_next_line.h"
 
 static	char	*cut_remain_if_n(char **remain, char *eol_ptr, char **line)
 {

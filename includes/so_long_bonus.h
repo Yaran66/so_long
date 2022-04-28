@@ -6,7 +6,7 @@
 /*   By: wjasmine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 11:43:05 by wjasmine          #+#    #+#             */
-/*   Updated: 2022/04/21 21:02:38 by wjasmine         ###   ########.fr       */
+/*   Updated: 2022/04/28 11:13:44 by wjasmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ typedef	struct	s_flags
 	unsigned int	exit;
 	unsigned int	is_wall;
 	unsigned int	moves;
+	unsigned int 	patrol;
 }	t_flags;
 
 typedef	struct	s_map
@@ -73,6 +74,9 @@ typedef	struct	s_map
 	int 			player_x;
 	int 			player_y;
 	void 			*img;
+	size_t			patrol_field;
+	int 			patrol_x;
+	int				patrol_y;
 }	t_map;
 
 void	error(char *message);
@@ -87,7 +91,11 @@ int		key_hook(int keycode, t_map *map);
 void	my_xpm_to_image(int x, int y, const char *file, t_map *map);
 int		ft_exit(t_map *map);
 void	ft_putnbr_fd(int n, int fd);
-//int		mouse_hook(int mousecode, t_map *map);
-//void 	print_lst(t_map *map);
+char	*ft_itoa(int n);
+int		display_score(t_map *map);
+int		animation(t_map *map);
+void	activate_patrol(t_map *map);
+void	ft_putchar_fd(char c, int fd);
+void	patrol_moves(t_map *map);
 
 #endif //SO_LONG_BONUS_H

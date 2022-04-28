@@ -6,73 +6,87 @@
 #    By: wjasmine <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/11 15:24:34 by wjasmine          #+#    #+#              #
-#   Updated: 2022/04/21 22:17:55 by wjasmine         ###   ########.fr       # #
+#   Updated: 2022/04/25 21:15:34 by wjasmine         ###   ########.fr       # #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		=	so_long
-NAME_B		=	so_long_bonus
+NAME		= so_long
+NAME_B		= so_long_bonus
 
-SRCS		=	${SRC} ${SRC_GNL}
-SRCS_B		=	${SRC_B} ${SRC_GNL_B}
+INCLUDES	= includes/
+HEADER		= includes/so_long.h includes/get_next_line.h
+HEADER_B	= includes/so_long_bonus.h includes/get_next_line.h
 
-SRC			=	so_long.c so_long_utils.c parser.c draw_map.c play.c
-GNL			= 	get_next_line.c get_next_line_utils.c
-SRC_GNL		= 	$(addprefix gnl/, $(GNL))
-BONUS		=	so_long_bonus.c	so_long_utils-bonus.c parser_bonus.c draw_map_bonus.c play_bonus.c
-SRC_B		=	$(addprefix ./bonus, $(BONUS))
-SRC_GNL_B	= 	$(addprefix ./gnl, $(GNL))
+MLX_F		= font.c font.xcf mlx_init_loop.m \
+              mlx_int.h mlx_int_str_to_wordtab.c mlx_mouse.m \
+              mlx_new_image.m mlx_new_window.h mlx_new_window.m \
+              mlx_opengl.h mlx_opengl.m mlx_png.c \
+              mlx_png.h mlx_rgb.c mlx_shaders.c \
+              mlx_xpm.c
+MLX_DIR		= mlx/
+MLX_H		= $(addprefix $(MLX_DIR), mlx.h)
+MLX			= $(addprefix $(MLX_DIR), libmlx.a)
+MLX_FLS		= $(addprefix $(MLX_DIR), $(MLX_F))
 
-INCLUDES	=	includes
-D_FILES		=	$(addprefix $(SCRS),$(patsubst %.c,%.d,$(SRCS)))
-D_FILES_B	=	$(addprefix $(SRCS_B),$(patsubst %.c,%.d,$(SRCS_B)))
+DIR			=
+DIR_B		= bonus/
+DIR_G		= gnl/
+FILES		= draw_map.c \
+				parser.c \
+				play.c \
+				so_long.c \
+				so_long_utils.c
+FILES_B		= draw_map_bonus.c \
+              parser_bonus.c \
+              play_bonus.c \
+              so_long_bonus.c \
+              so_long_utils_bonus.c \
+              moves_bonus.c \
+              animation_bonus.c \
+              patrol_bonus.c
+FILES_G		= get_next_line.c \
+              get_next_line_utils.c
 
-OBJS		= 	${SRCS:%.c=%.o}
-OBJS_B		= 	${SRCS_B:%.c=%.o}
-T_FILE		=	.bonus
 
-CC			= 	gcc
-RM			= 	rm -f
+SRCS		= $(addprefix $(DIR), $(FILES)) $(addprefix $(DIR_G), $(FILES_G))
+SRCS_B		= $(addprefix $(DIR_B), $(FILES_B)) $(addprefix $(DIR_G), $(FILES_G))
 
-OPTFLAGS 	= 	-O2
-CFLAGS		= 	-Wall -Wextra -Werror -Imlx
-MLX			=	-Lmlx -lmlx -framework OpenGL -framework AppKit
+OBJS		= $(SRCS:%.c=%.o)
+OBJS_B		= $(SRCS_B:%.c=%.o)
 
+DS			= $(SRCS:%.c=%.d)
+DS_B		= $(SRCS_B:%.c=%.d)
 
-.PHONY:			all clean fclean re
+CC 			= cc
+CFLAGS		= -Wall -Wextra -Werror -MMD
+MLX_FLAGS	= -Lmlx -lmlx -framework OpenGL -framework AppKit
 
-all:			${NAME}
+.PHONY: 	all clean fclean re bonus
 
-bonus:
-				make NAME="$(NAME_B)" \
-				OBJS="$(OBJS_B)"	all
+all:		$(NAME)
 
-${NAME}:		${OBJS}
-				make -s -C ./mlx
-				${CC} ${OBJS} ${MLX} -o ${NAME}
+$(MLX):		$(MLX_H) $(MLX_FLS)
+			make -C $(MLX_DIR)
 
-%.o	:			%.c ${INCLUDES} Makefile
-				${CC} ${CFLAGS} ${OPTFLAGS}	-I ${INCLUDES} -c $< -o $@ -MMD
+bonus:		$(NAME_B)
 
-#bonus:			${T_FILE}
+$(NAME_B): $(OBJS_B) $(MLX)
+			$(CC) $(CFLAGS) $(MLX_FLAGS) $(OBJS_B) $(MLX) -o $(NAME_B)
 
-#${T_FILE}:		${OBJS_B}
-#				make -s -C ./mlx
-#				${CC} ${OBJS_B} ${MLX} -o ${NAME_B}
-#				@touch ${T_FILE}
+$(NAME):	$(OBJS) $(MLX)
+			$(CC) $(CFLAGS) $(MLX_FLAGS) $(OBJS) $(MLX) -o $@
 
--include		$(D_FILES)
--include		$(D_FILES_B)
+%.o:		%.c Makefile
+			$(CC) $(CFLAGS) -I $(INCLUDES) -c $< -o $@
+
+-include	$(DS) $(DS_B)
+#$(wildcard *.d)
 
 clean:
-				${RM} ${OBJS} ${OBJS_B}
-				make clean -C ./mlx
-				$(RM) $(D_FILES)
-				$(RM) $(D_FILES_B)
+			$(RM) $(OBJS) $(OBJS_B) $(DS) $(DS_B)
+			make -C mlx clean
 
-fclean:			clean
-				${RM} ${NAME} ${NAME_B}
-				make clean -C ./mlx
+fclean:		clean
+			$(RM) $(NAME) $(NAME_B)
 
-re:				fclean all
-				make re -C ./mlx
+re:			fclean all
