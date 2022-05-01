@@ -80,7 +80,6 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	char	*newstr;
 	int		i;
 
-//	if (s1 == 0 || s2 == 0)
 	if (s2 == 0)
 		return (0);
 	newstr = malloc((ft_strlen(s1) + ft_strlen(s2) + 1));

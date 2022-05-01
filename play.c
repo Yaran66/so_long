@@ -6,7 +6,7 @@
 /*   By: wjasmine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 14:15:01 by wjasmine          #+#    #+#             */
-/*   Updated: 2022/04/22 23:11:47 by wjasmine         ###   ########.fr       */
+/*   Updated: 2022/04/30 20:15:17 by wjasmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "includes/so_long.h"
@@ -31,7 +31,7 @@ static void	collect_collectable(t_map *map, int i, int x, int y)
 {
 	my_xpm_to_image(map->player_x * SCALE, map->player_y * SCALE, \
 			"./images/mfaGrass.xpm", map);
-	my_xpm_to_image(x * SCALE, y * SCALE, "./images/Knight.xpm", map);
+	my_xpm_to_image(x * SCALE, y * SCALE, "./images/Knight0.xpm", map);
 	map->field[i] = '0';
 	--map->flags.collectible;
 }
@@ -49,10 +49,11 @@ static void	my_move(t_map *map, size_t i, int x, int y)
 	{
 		my_xpm_to_image(map->player_x * SCALE, map->player_y * SCALE, \
 			"./images/mfaGrass.xpm", map);
-		my_xpm_to_image(x * SCALE, y * SCALE, "./images/Knight.xpm", map);
+		my_xpm_to_image(x * SCALE, y * SCALE, "./images/Knight0.xpm", map);
 	}
 	else if (cell == 'C')
 	{
+		my_xpm_to_image(x * SCALE, y * SCALE, "./images/mfaGrass.xpm", map);
 		collect_collectable(map, i, x, y);
 	}
 	map->player_x = x;

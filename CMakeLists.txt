@@ -11,7 +11,7 @@ add_executable(so_long
         parser.с
         so_long_utils.c
         gnl/get_next_line.c
-        gnl/get_next_line_utils.c draw_map.c play.c)
+        gnl/get_next_line_utils.c draw_map.c play.c bonus/moves_bonus.c bonus/animation_bonus.c bonus/patrol_bonus.c)
 
 SET(CMAKE_C_FLAGS  " ${CMAKE_C_FLAGS} -Wall -Wextra")
 

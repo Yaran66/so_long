@@ -6,7 +6,7 @@
 /*   By: wjasmine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 14:15:01 by wjasmine          #+#    #+#             */
-/*   Updated: 2022/04/22 23:11:47 by wjasmine         ###   ########.fr       */
+/*   Updated: 2022/04/30 20:07:13 by wjasmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "includes/so_long.h"
@@ -27,11 +27,11 @@ void	post_image(int x, int y, char c, t_map *map)
 	if (c == '1')
 		my_xpm_to_image(x, y, "./images/Spikes.xpm", map);
 	if (c == 'P')
-		my_xpm_to_image(x, y, "./images/Knight.xpm", map);
+		my_xpm_to_image(x, y, "./images/Knight0.xpm", map);
 	if (c == 'C')
 		my_xpm_to_image(x, y, "./images/Heart.xpm", map);
 	if (c == 'E')
-		my_xpm_to_image(x, y, "./images/Princess.xpm", map);
+		my_xpm_to_image(x, y, "./images/princess_girl.xpm", map);
 }
 
 void	draw_map(t_map *map)

@@ -19,7 +19,6 @@
 # include "get_next_line.h"
 # include "../mlx/mlx.h"
 # include <fcntl.h>
-# include <stdio.h>
 
 # define SPACE '0'
 # define WALL '1'

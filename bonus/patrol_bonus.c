@@ -6,7 +6,7 @@
 /*   By: wjasmine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 14:15:01 by wjasmine          #+#    #+#             */
-/*   Updated: 2022/04/28 16:54:00 by wjasmine         ###   ########.fr       */
+/*   Updated: 2022/04/30 20:57:31 by wjasmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "so_long_bonus.h"
@@ -17,7 +17,8 @@ static void	patrol_path(t_map *map, int x, int y)
 	if (map->field[map->patrol_field] == 'C')
 		my_xpm_to_image(x * SCALE, y * SCALE, "./images/Heart.xpm", map);
 	else if (map->field[map->patrol_field] == 'E')
-		my_xpm_to_image(x * SCALE, y * SCALE, "./images/Princess.xpm", map);
+		my_xpm_to_image(x * SCALE, y * SCALE, \
+		"./images/princess_girl.xpm", map);
 }
 
 static void	patrol_do_move(t_map *map, size_t i, int x, int y)
@@ -37,6 +38,7 @@ static void	patrol_do_move(t_map *map, size_t i, int x, int y)
 	}
 	else if (cell == '0' || cell == 'P' || cell == 'E' || cell == 'C')
 		patrol_path(map, map->patrol_x, map->patrol_y);
+	my_xpm_to_image(x * SCALE, y * SCALE, "./images/Monster1.xpm", map);
 	map->patrol_x = x;
 	map->patrol_y = y;
 	map->patrol_field = i;
@@ -46,13 +48,13 @@ void	patrol_moves(t_map *map)
 {
 	static int	time = 0;
 
-	if (time == 4500 && map->flags.patrol == 1)
+	if (time == 6000 && map->flags.patrol == 1)
 	{
 		patrol_do_move(map, map->patrol_field + map->size_x + 1, \
 			map->patrol_x, map->patrol_y + 1);
 		time = 0;
 	}
-	if (time == 4500 && map->flags.patrol == 0)
+	if (time == 6000 && map->flags.patrol == 0)
 	{
 		patrol_do_move(map, map->patrol_field - map->size_x - 1, \
 			map->patrol_x, map->patrol_y - 1);
