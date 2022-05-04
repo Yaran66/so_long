@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   play.c                                             :+:      :+:    :+:   */
+/*   play_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wjasmine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 14:15:01 by wjasmine          #+#    #+#             */
-/*   Updated: 2022/04/28 20:02:57 by wjasmine         ###   ########.fr       */
+/*   Updated: 2022/05/04 09:33:42 by wjasmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "so_long_bonus.h"
@@ -14,9 +14,11 @@
 int	ft_exit(t_map *map)
 {
 	free(map->field);
-	mlx_destroy_image(map->mlx, map->img);
-	mlx_clear_window(map->mlx, map->mlx_win);
-	mlx_destroy_window(map->mlx, map->mlx_win);
+	if (map->mlx && map->mlx_win)
+	{
+		mlx_clear_window(map->mlx, map->mlx_win);
+		mlx_destroy_window(map->mlx, map->mlx_win);
+	}
 	exit (0);
 }
 

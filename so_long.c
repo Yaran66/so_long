@@ -6,21 +6,31 @@
 /*   By: wjasmine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 11:42:37 by wjasmine          #+#    #+#             */
-/*   Updated: 2022/04/22 22:52:12 by wjasmine         ###   ########.fr       */
+/*   Updated: 2022/05/02 19:55:01 by wjasmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "includes/so_long.h"
-#include <stdlib.h>
-#include "mlx/mlx.h"
 
 void	ft_start_mlx(t_map *map)
 {
 	map->mlx = mlx_init();
+	if (map->mlx == 0)
+	{
+		ft_putstr_fd("Error\n", 2);
+		ft_putstr_fd("MLX error", 2);
+		ft_exit(map);
+	}
 	map->mlx_win = mlx_new_window(map->mlx, map->size_x * SCALE, \
 		map->size_y * SCALE, "so_long");
+	if (map->mlx_win == 0)
+	{
+		ft_putstr_fd("Error\n", 2);
+		ft_putstr_fd("MLX error", 2);
+		ft_exit(map);
+	}
 	draw_map(map);
 	mlx_hook(map->mlx_win, 2, 0, key_hook, map);
-	mlx_hook(map->mlx_win, 17, 0, ft_exit, 0);
+	mlx_hook(map->mlx_win, 17, 1L << 17, ft_exit, map);
 	mlx_loop(map->mlx);
 }
 

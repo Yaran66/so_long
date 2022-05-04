@@ -6,7 +6,7 @@
 /*   By: wjasmine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 14:15:01 by wjasmine          #+#    #+#             */
-/*   Updated: 2022/04/30 20:07:13 by wjasmine         ###   ########.fr       */
+/*   Updated: 2022/05/02 19:36:39 by wjasmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "includes/so_long.h"
@@ -19,6 +19,7 @@ void	my_xpm_to_image(int x, int y, const char *file, t_map *map)
 	map->img = mlx_xpm_file_to_image(map->mlx, (char *)file, &img_width, \
 		&img_height);
 	mlx_put_image_to_window(map->mlx, map->mlx_win, map->img, x, y);
+	mlx_destroy_image(map->mlx, map->img);
 }
 
 void	post_image(int x, int y, char c, t_map *map)

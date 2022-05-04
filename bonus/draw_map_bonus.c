@@ -19,6 +19,7 @@ void	my_xpm_to_image(int x, int y, const char *file, t_map *map)
 	map->img = mlx_xpm_file_to_image(map->mlx, (char *)file, &img_width, \
 		&img_height);
 	mlx_put_image_to_window(map->mlx, map->mlx_win, map->img, x, y);
+	mlx_destroy_image(map->mlx, map->img);
 }
 
 void	post_image(int x, int y, char c, t_map *map)
@@ -27,7 +28,7 @@ void	post_image(int x, int y, char c, t_map *map)
 	if (c == '1')
 		my_xpm_to_image(x, y, "./images/Spikes.xpm", map);
 	if (c == 'P')
-		my_xpm_to_image(x, y, "./images/Knight.xpm", map);
+		my_xpm_to_image(x, y, "./images/Knight0.xpm", map);
 	if (c == 'C')
 		my_xpm_to_image(x, y, "./images/Heart.xpm", map);
 	if (c == 'E')

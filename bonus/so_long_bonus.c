@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   so_long_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wjasmine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -20,7 +20,7 @@ void	ft_start_mlx(t_map *map)
 	activate_patrol(map);
 	mlx_hook(map->mlx_win, 2, 0, key_hook, map);
 	mlx_loop_hook(map->mlx, animation, map);
-	mlx_hook(map->mlx_win, 17, 0, ft_exit, 0);
+	mlx_hook(map->mlx_win, 17, 1L << 17, ft_exit, map);
 	mlx_loop(map->mlx);
 }
 

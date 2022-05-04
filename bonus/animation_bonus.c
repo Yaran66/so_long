@@ -49,7 +49,7 @@ static void	patrol_animation(t_map *map)
 	else if (time == 1500)
 	{
 		my_xpm_to_image(map->patrol_x * SCALE, map->patrol_y * SCALE, \
-            "./images/Monster2.xpm", map);
+			"./images/Monster2.xpm", map);
 		my_xpm_to_image(map->patrol_x * SCALE, map->patrol_y * SCALE, \
 			"./images/mfaGrass.xpm", map);
 	}
